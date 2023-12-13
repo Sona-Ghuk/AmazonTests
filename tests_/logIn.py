@@ -4,7 +4,7 @@ from pages_.loginPage import LoginPage
 from selenium.webdriver.support.events import EventFiringWebDriver
 from common_.utilities_.customListener import CustomListener
 
-class LoginTest(unittest.TestCase):
+class SignInTest(unittest.TestCase):
     def setUp(self):
         self.driver = webdriver.Chrome()
         self.driver = EventFiringWebDriver(self.driver, CustomListener())
@@ -18,6 +18,9 @@ class LoginTest(unittest.TestCase):
         login_page.click_to_continue_button()
         login_page.fill_password_field("hasiko07")
         login_page.click_to_signin_button()
+
+
+
 
     def tearDown(self):
         self.driver.close()

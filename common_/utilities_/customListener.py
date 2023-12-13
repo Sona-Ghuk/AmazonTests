@@ -1,29 +1,26 @@
+from common_.utilities_.customLogger import *
 from selenium.webdriver.support.events import AbstractEventListener
 from common_.utilities_.customLogger import logger
 
 
 class CustomListener(AbstractEventListener):
-    def before_navigate_to(self, url, driver):
-        logger.info(f"Before navigating to: {url}")
-
     def after_navigate_to(self, url, driver):
-        logger.info(f"After navigating to: {url}")
-
-    def before_click(self, element, driver):
-        logger.info(f"Before clicking on element: {element}")
-
-    def after_click(self, element, driver):
-        logger.info(f"After clicking on element: {element}")
-
-    def after_quit(self, driver):
-        logger.info("After quitting the driver")
-
-    def on_exception(self, exception, driver):
-        logger.error(f"Exception encountered: {exception}")
-        logger.info(f"Navigating to {url}")
-
-    def before_find(self, by, value, driver):
-        logger.info(f"Trying to find element by: {by} with value: {value}")
-
+        print("After navigating to ", url)
+    def after_navigate_back(self, driver):
+        print("After navigating back ", driver.current_url)
+    def after_navigate_forward(self, driver):
+        print("After navigating forward ", driver.current_url)
     def after_find(self, by, value, driver):
-        logger.info(f"Found element by: {by} with value: {value}")
+        logger("INFO", f"Founded element with locator: By: {by}, Value: {value}")
+    def after_click(self, element, driver):
+        logger("INFO", f"Clicked to element: {element}")
+    def after_change_value_of(self, element, driver):
+        logger("INFO", f"Changed value of element: {element}")
+    def after_execute_script(self, script, driver):
+        print("after_execute_script")
+    def after_close(self, driver):
+        logger("INFO", "Closing Browser!")
+    def after_quit(self, driver):
+        logger("INFO", "Quiting browser tab!")
+    def on_exception(self, exception, driver):
+        print("on_exception")

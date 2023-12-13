@@ -1,5 +1,7 @@
 from selenium.webdriver.common.by import By
-from .basePage import BasePage
+from pages_.basePage import BasePage
+from common_.utilities_.customLogger import logger
+
 
 class NavigationBar(BasePage):
     def __init__(self, driver):
@@ -10,6 +12,7 @@ class NavigationBar(BasePage):
         self.__firstResultLocater = (By.ID, ".s-result-item")
         self.__remove_locator = (By.CSS_SELECTOR, "[value='Delete']")
         self.__cartButtonLocator = (By.ID, "nav-cart-text-container")
+
 
     def fill_search_field(self, text):
         fillSearchFieldElement = self._find_element(self.__searchProductLocater)
@@ -35,3 +38,6 @@ class NavigationBar(BasePage):
     def remove_from_cart(self):
         removeButtonElement = self._find_element(self.__remove_locator)
         self._click(removeButtonElement)
+
+    def get_search_locator(self):
+        return self.search_locator
